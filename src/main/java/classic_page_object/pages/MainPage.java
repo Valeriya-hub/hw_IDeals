@@ -79,8 +79,8 @@ public class MainPage {
     }
 
     public void checkExpectedResult(String message, boolean actualResult) {
-        WebDriverWait wait = new WebDriverWait(driver, 20);
+        WebDriverWait wait = new WebDriverWait(driver, 5000);
         element = wait.until(ExpectedConditions.elementToBeClickable(closeButton));
-        Assert.assertEquals(message, false, actualResult);
+        Assert.assertTrue(message, actualResult);
     }
 }

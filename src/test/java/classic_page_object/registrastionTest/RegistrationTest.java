@@ -38,6 +38,6 @@ public class RegistrationTest {
         page.enterPassIntoPassInput();
         page.clickToRegisterButton();
 
-        page.checkExpectedResult("Close button is not present", page.isCloseButtonPresent());
+        page.checkExpectedResult("Close button is present", page.isCloseButtonPresent());
     }
 }
