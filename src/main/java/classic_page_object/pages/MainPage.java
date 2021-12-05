@@ -71,6 +71,8 @@ public class MainPage {
 
     public boolean isElementDisplayed(WebElement element) {
         try {
+            WebDriverWait wait = new WebDriverWait(driver, 5000);
+            element = wait.until(ExpectedConditions.elementToBeClickable(closeButton));
             boolean state = element.isDisplayed();
             return state;
         } catch (Exception e) {
@@ -78,9 +80,8 @@ public class MainPage {
         }
     }
 
-    public void checkExpectedResult(String message, boolean actualResult) {
-        WebDriverWait wait = new WebDriverWait(driver, 5000);
-        element = wait.until(ExpectedConditions.elementToBeClickable(closeButton));
-        Assert.assertTrue(message, actualResult);
+    public boolean checkExpectedResult(String message, boolean actualResult) {//, WebElement element
+       return isElementDisplayed(closeButton);
+//        Assert.assertTrue(message, page.isElementDisplayed());
     }
 }
