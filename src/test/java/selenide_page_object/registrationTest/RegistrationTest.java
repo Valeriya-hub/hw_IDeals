@@ -1,5 +1,6 @@
 package selenide_page_object.registrationTest;
 
+import com.codeborne.selenide.Condition;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import selenide_page_object.pages.MainPage;
@@ -19,6 +20,6 @@ public class RegistrationTest {
         page.enterPassIntoPassInput();
         page.clickToRegisterButton();
 
-        $(By.xpath(".//span[text()='Закрыть']")).shouldBe().click();
+        $(By.xpath(".//span[text()='Закрыть']")).shouldBe(Condition.visible);
     }
 }
