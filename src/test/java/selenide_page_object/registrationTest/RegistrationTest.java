@@ -5,6 +5,7 @@ import com.codeborne.selenide.Configuration;
 import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
 import io.github.bonigarcia.wdm.managers.EdgeDriverManager;
 import io.github.bonigarcia.wdm.managers.FirefoxDriverManager;
+import io.github.bonigarcia.wdm.managers.OperaDriverManager;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -32,6 +33,9 @@ public class RegistrationTest {
         } else if ("firefox".equalsIgnoreCase(browser)) {
             FirefoxDriverManager.getInstance().setup();
             Configuration.browser = "firefox";
+        } else if ("opera".equalsIgnoreCase(browser)) {
+            OperaDriverManager.getInstance().setup();
+            Configuration.browser = "opera";
         } else {
             throw new Exception("Check browser var");
         }
