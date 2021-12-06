@@ -12,6 +12,7 @@ public class MainPage {
     final SelenideElement passInput = $x(".//input[@name='user[pass]' and @tabindex=3]");
     final SelenideElement registerButton = $x(".//input[@tabindex=7 and @type='submit']");
 
+
     public void clickToRegistrationIcon() {
         registrationIcon.click();
     }

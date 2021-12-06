@@ -1,6 +1,5 @@
 package classic_page_object.pages;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,10 +9,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainPage {
     private WebElement element;
-
     private final WebDriver driver;
+    WebDriverWait webDriverWait;
 
-    @FindBy(xpath = ".//div[@class='userbar userbar--user-outline-icon j-user-tabs']//a[@href='#j-popup-tab-auth']")
+    @FindBy(className = "icon-user")
     private WebElement registrationIcon;
 
     @FindBy(xpath = ".//a[@href='#j-popup-tab-signup']")
@@ -36,27 +35,34 @@ public class MainPage {
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
+        webDriverWait = new WebDriverWait(driver, 20);
     }
 
+
     public void clickToRegistrationIcon() {
+        webDriverWait.until(ExpectedConditions.visibilityOf(registrationIcon));
         registrationIcon.click();
     }
 
     public void clickToRegistrationTab() {
+        webDriverWait.until(ExpectedConditions.visibilityOf(registrationTab));
         registrationTab.click();
     }
 
     public void enterNameIntoNameInput(String name) {
+        webDriverWait.until(ExpectedConditions.visibilityOf(registrationTab));
         nameInput.clear();
         nameInput.sendKeys(name);
     }
 
     public void enterEmailIntoEmailInput() {
+        webDriverWait.until(ExpectedConditions.visibilityOf(emailInput));
         emailInput.clear();
         emailInput.sendKeys(GenerateEmailPage.getRandomEmail());
     }
 
     public void enterPassIntoPassInput() {
+        webDriverWait.until(ExpectedConditions.visibilityOf(passInput));
         passInput.clear();
         passInput.sendKeys("12312312");
     }
@@ -66,13 +72,13 @@ public class MainPage {
     }
 
     public boolean isCloseButtonPresent() {
+        webDriverWait.until(ExpectedConditions.visibilityOf(closeButton));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(closeButton));
         return isElementDisplayed(closeButton);
     }
 
     public boolean isElementDisplayed(WebElement element) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, 5000);
-            element = wait.until(ExpectedConditions.elementToBeClickable(closeButton));
             boolean state = element.isDisplayed();
             return state;
         } catch (Exception e) {
@@ -82,6 +88,5 @@ public class MainPage {
 
     public boolean checkExpectedResult(String message, boolean actualResult) {//, WebElement element
        return isElementDisplayed(closeButton);
-//        Assert.assertTrue(message, page.isElementDisplayed());
     }
 }
