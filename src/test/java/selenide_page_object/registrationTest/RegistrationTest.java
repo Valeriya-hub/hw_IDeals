@@ -6,6 +6,8 @@ import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
 import io.github.bonigarcia.wdm.managers.EdgeDriverManager;
 import io.github.bonigarcia.wdm.managers.FirefoxDriverManager;
 import io.github.bonigarcia.wdm.managers.OperaDriverManager;
+import net.bytebuddy.implementation.bind.annotation.Default;
+import org.checkerframework.checker.nullness.qual.KeyFor;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -18,27 +20,8 @@ public class RegistrationTest {
 
     @Before
     public void initialDriver() throws Exception {
-        initDriver();
-    }
-
-    public void initDriver() throws Exception {
-        String browser = System.getProperty("browser");
-        if ((browser == null) ||
-                ("chrome".equalsIgnoreCase(browser))) {
-            ChromeDriverManager.getInstance().setup();
-            Configuration.browser = "chrome";
-        } else if ("edge".equalsIgnoreCase(browser)) {
-            EdgeDriverManager.getInstance().setup();
-            Configuration.browser = "edge";
-        } else if ("firefox".equalsIgnoreCase(browser)) {
-            FirefoxDriverManager.getInstance().setup();
-            Configuration.browser = "firefox";
-        } else if ("opera".equalsIgnoreCase(browser)) {
-            OperaDriverManager.getInstance().setup();
-            Configuration.browser = "opera";
-        } else {
-            throw new Exception("Check browser var");
-        }
+        Utils utils = new Utils();
+        utils.initDriver();
     }
 
     @Test
