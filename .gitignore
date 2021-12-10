@@ -50,3 +50,5 @@ buildNumber.properties
 .settings
 *.log
 .allure
+
+build/reports/tests
