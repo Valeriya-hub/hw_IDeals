@@ -13,7 +13,7 @@ import static selenide_page_object.utils.config.WebConfig.WEB_CONFIG;
 
 public abstract class LocalFirefoxDriver implements WebDriverProvider {
     @Nonnull
-//    @Override
+
     public WebDriver createDriver(@Nonnull DesiredCapabilities desiredCapabilities) {
         WebDriverManager.firefoxdriver().setup();
         FirefoxOptions firefoxOptions = new FirefoxOptions();
