@@ -26,9 +26,4 @@ public interface WebConfig extends Config {
     @Key("gridEndpoint")
     @DefaultValue("http://localhost:4444/wd/hub")
     String getGridEndpoint();
-
-    @Key("baseUrl")
-    @DefaultValue("https://finik-market.com/")
-    String getBaseUrl();
-
 }
