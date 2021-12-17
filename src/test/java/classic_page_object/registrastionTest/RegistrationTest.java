@@ -59,7 +59,6 @@ public class RegistrationTest {
         page.enterPassIntoPassInput();
         page.clickToRegisterButton();
 
-        page.checkExpectedResult("Close button is present", page.isCloseButtonPresent());
-
+        page.waitExpectedResult("Close button is NOT present", page.isCloseButtonPresent());
     }
 }

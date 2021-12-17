@@ -1,5 +1,6 @@
 package classic_page_object.pages;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,7 +38,6 @@ public class MainPage {
         this.driver = driver;
         webDriverWait = new WebDriverWait(driver, 20);
     }
-
 
     public void clickToRegistrationIcon() {
         webDriverWait.until(ExpectedConditions.visibilityOf(registrationIcon));
@@ -79,14 +79,16 @@ public class MainPage {
 
     public boolean isElementDisplayed(WebElement element) {
         try {
+            webDriverWait.until(ExpectedConditions.visibilityOf(closeButton));
+            webDriverWait.until(ExpectedConditions.elementToBeClickable(closeButton));
             boolean state = element.isDisplayed();
             return state;
-        } catch (Exception e) {
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
 
-    public boolean checkExpectedResult(String message, boolean actualResult) {//, WebElement element
-       return isElementDisplayed(closeButton);
+    public boolean waitExpectedResult(String message, boolean actualResult) {
+       return webDriverWait.until(ExpectedConditions.elementToBeClickable(closeButton)).isDisplayed();
     }
 }
